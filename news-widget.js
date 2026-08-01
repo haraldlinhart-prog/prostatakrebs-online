@@ -16,16 +16,33 @@
     }
   }
 
-  function render(mount, items) {
-    if (!items || !items.length) {
+  function pickForPage(items, n) {
+    // Deterministischer, aber pro Seite unterschiedlicher Ausschnitt aus dem Pool
+    // (Hash des Pfads als Startpunkt, mit Wrap-Around durch den Pool)
+    var path = location.pathname || '/';
+    var hash = 0;
+    for (var i = 0; i < path.length; i++) {
+      hash = (hash * 31 + path.charCodeAt(i)) >>> 0;
+    }
+    var start = items.length ? hash % items.length : 0;
+    var picked = [];
+    for (var j = 0; j < Math.min(n, items.length); j++) {
+      picked.push(items[(start + j) % items.length]);
+    }
+    return picked;
+  }
+
+  function render(mount, allItems) {
+    if (!allItems || !allItems.length) {
       mount.innerHTML =
         '<section class="health-news"><div class="hn-head"><h2>Aktuelle Gesundheits-News</h2></div>' +
         '<p class="hn-empty">Gerade keine aktuellen Meldungen verfügbar.</p></section>';
       return;
     }
 
+    var items = pickForPage(allItems, 4);
+
     var cards = items
-      .slice(0, 4)
       .map(function (item) {
         var imgHtml = item.image
           ? '<div class="hn-img-wrap"><img src="' + escapeHtml(item.image) + '" alt="" loading="lazy" referrerpolicy="no-referrer"></div>'

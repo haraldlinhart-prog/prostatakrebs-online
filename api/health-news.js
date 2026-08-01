@@ -57,7 +57,7 @@ async function fetchAerzteblatt() {
   if (!res || !res.ok) return [];
   const xml = await res.text();
   const items = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
-  const parsed = items.slice(0, 6).map((block) => ({
+  const parsed = items.slice(0, 12).map((block) => ({
     title: extractTag(block, 'title'),
     link: extractTag(block, 'link'),
     description: stripHtml(extractTag(block, 'description')).replace(/\[weiter lesen\]$/, '').trim(),
@@ -68,9 +68,9 @@ async function fetchAerzteblatt() {
     credit: 'Deutsches Ärzteblatt',
   }));
 
-  // og:image für die ersten 4 Artikel nachladen (Feedzy-Stil: Bild von der Zielseite holen)
+  // og:image für die ersten Artikel nachladen (Feedzy-Stil: Bild von der Zielseite holen)
   await Promise.all(
-    parsed.slice(0, 4).map(async (item) => {
+    parsed.slice(0, 10).map(async (item) => {
       item.image = await fetchOgImage(item.link);
     })
   );
@@ -133,7 +133,7 @@ module.exports = async (req, res) => {
       return true;
     });
 
-    const result = { items: all.slice(0, 4), updatedAt: new Date().toISOString() };
+    const result = { items: all.slice(0, 12), updatedAt: new Date().toISOString() };
     cache = { data: result, ts: now };
     res.status(200).json(result);
   } catch (err) {
