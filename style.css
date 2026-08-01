@@ -125,3 +125,27 @@ footer { border-top: 1px solid var(--line); padding: 30px var(--pad); margin-top
   body { font-size: 16.5px; }
   .footer-links a { margin-left: 0; margin-right: 16px; display: inline-block; }
 }
+
+/* Kontaktformular */
+.contact-form { max-width: 60ch; margin: 24px 0 10px; }
+.form-row { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
+.form-row label { font-size: 14.5px; color: var(--ink-soft); font-weight: 600; }
+.form-row input, .form-row textarea {
+  font-family: var(--sans); font-size: 16px; color: var(--ink);
+  background: #fff; border: 1px solid var(--line); border-radius: 4px;
+  padding: 10px 12px; resize: vertical;
+}
+.form-row input:focus, .form-row textarea:focus {
+  outline: none; border-color: var(--moss); box-shadow: 0 0 0 3px rgba(79,122,92,0.15);
+}
+.form-row.hp { position: absolute; left: -9999px; top: -9999px; height: 0; overflow: hidden; }
+.cf-submit {
+  font-family: var(--sans); font-weight: 600; font-size: 16px; color: #fff;
+  background: var(--moss); border: none; border-radius: 4px; padding: 12px 26px;
+  cursor: pointer; transition: background 0.15s;
+}
+.cf-submit:hover { background: var(--moss-dark); }
+.cf-submit:disabled { opacity: 0.6; cursor: default; }
+.cf-status { margin-top: 12px; font-size: 15px; min-height: 1.2em; }
+.cf-status.cf-ok { color: var(--moss-dark); }
+.cf-status.cf-error { color: var(--brick); }
