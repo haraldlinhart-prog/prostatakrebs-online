@@ -8,6 +8,7 @@ const CONTACT_TO = process.env.CONTACT_TO || 'kontakt@prostatakrebs.online';
 
 // --- Netzwerkweite Spam-Blockliste (normalisierte Adressen) ---
 const BLOCKED_EMAILS = new Set([
+  'zazacukeq266@gmail.com',
   'edipajulodev85@gmail.com',
   'atanaxawum896@gmail.com',
 ]);
@@ -26,26 +27,37 @@ function normalizeEmail(email) {
 
 // --- Gestuftes isGibberish (Juli 2026 Netzwerk-Standard) ---
 function isGibberish(str) {
-  const s = String(str || '').replace(/\s+/g, '');
-  if (s.length < 6) return false;
+  const trimmed = (str || '').trim();
 
-  const vowels = (s.match(/[aeiouäöüAEIOUÄÖÜ]/g) || []).length;
-  const vowelRatio = vowels / s.length;
-
-  let transitions = 0;
-  for (let i = 1; i < s.length; i++) {
-    const prevUpper = /[A-ZÄÖÜ]/.test(s[i - 1]);
-    const curUpper = /[A-ZÄÖÜ]/.test(s[i]);
-    if (prevUpper !== curUpper) transitions++;
+  // Eine komplette Nachricht, die aus einem einzigen zusammenhängenden Token
+  // mit gemischter Groß-/Kleinschreibung besteht (keine Leerzeichen, keine
+  // Satzzeichen), ist praktisch nie eine echte menschliche Nachricht — auch
+  // wenn der Vokalanteil zufällig hoch genug ist, um die Ratio-Prüfung unten
+  // zu unterlaufen (z.B. durch zufällig viele "y"s).
+  if (/^[a-zA-ZäöüÄÖÜß]{10,40}$/.test(trimmed) && /[a-zäöüß]/.test(trimmed) && /[A-ZÄÖÜ]/.test(trimmed)) {
+    return true;
   }
-  const caseTransitionRatio = transitions / s.length;
 
-  let vowelThreshold;
-  if (s.length <= 10) vowelThreshold = 0.16;
-  else if (s.length <= 13) vowelThreshold = 0.22;
-  else vowelThreshold = 0.28;
-
-  return vowelRatio < vowelThreshold && caseTransitionRatio > 0.3;
+  const words = (str || '').split(/\s+/).filter(w => w.length >= 6);
+  const vowelChars = 'aeiouyAEIOUYäöüÄÖÜàáâãåèéêëìíîïòóôõùúûýÀÁÂÃÅÈÉÊËÌÍÎÏÒÓÔÕÙÚÛÝ';
+  for (const word of words) {
+    const letters = word.replace(/[^a-zA-ZäöüÄÖÜßàáâãåèéêëìíîïòóôõùúûýÀÁÂÃÅÈÉÊËÌÍÎÏÒÓÔÕÙÚÛÝ]/g, '');
+    if (letters.length < 6) continue;
+    let vowels = 0;
+    for (const ch of letters) if (vowelChars.includes(ch)) vowels++;
+    const vowelRatio = vowels / letters.length;
+    let transitions = 0;
+    for (let i = 1; i < letters.length; i++) {
+      const prevUpper = letters[i - 1] === letters[i - 1].toUpperCase() && letters[i - 1] !== letters[i - 1].toLowerCase();
+      const curUpper = letters[i] === letters[i].toUpperCase() && letters[i] !== letters[i].toLowerCase();
+      if (prevUpper !== curUpper) transitions++;
+    }
+    const transitionRatio = transitions / (letters.length - 1);
+    const vowelThreshold = letters.length >= 14 ? 0.28 : (letters.length >= 11 ? 0.22 : 0.16);
+    if (vowelRatio < vowelThreshold && transitionRatio > 0.3) return true;
+  }
+  if (/\S{61,}/.test(str || '')) return true;
+  return false;
 }
 
 // looksHuman-Fallback: reiner No-Space-String über 60 Zeichen ist verdächtig
