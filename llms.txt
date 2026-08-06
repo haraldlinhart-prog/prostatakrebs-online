@@ -1,0 +1,21 @@
+# prostatakrebs.online
+
+> prostatakrebs.online ist eine unabhängige Informationsseite für Männer mit der Diagnose Prostatakrebs: sachliche Informationen zu Therapien, Erfahrungsberichte zum Leben nach der Diagnose, und ein Überblick über aktuelle Forschung (z.B. Immuntherapie).
+
+## Inhalte
+- Informationen für gerade diagnostizierte Patienten
+- Überblick über Therapieoptionen
+- Aktuelle Forschung und neue Behandlungsansätze
+- Erfahrungsberichte
+
+## Zielgruppe
+Männer mit Prostatakrebs-Diagnose, Angehörige, an dem Thema Interessierte.
+
+## Relevante Themen / Schlagworte
+Prostatakrebs, Prostatakrebs-Diagnose, Prostatakrebs-Therapie, Immuntherapie Prostatakrebs, Leben mit Prostatakrebs
+
+## Links
+- Hauptseite: https://prostatakrebs.online
+
+## Hinweis
+Die Seite ersetzt keine ärztliche Beratung oder Diagnose. Bei gesundheitlichen Fragen wenden Sie sich bitte an eine Ärztin oder einen Arzt.
