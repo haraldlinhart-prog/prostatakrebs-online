@@ -3,4 +3,4 @@ Allow: /
 Disallow: /impressum.html
 Disallow: /datenschutz.html
 
-Sitemap: https://prostatakrebs.online/sitemap.xml
+Sitemap: https://www.prostatakrebs.online/sitemap.xml
