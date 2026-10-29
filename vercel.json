@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/blog/prostatakrebs-ohne-werbung-sachliche-information-statt-kommerzielle-in",
+      "destination": "/blog/prostatakrebs-ohne-werbung-verlassliche-informationen-statt-kommerziel/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/prostatakrebs-ohne-werbung-sachliche-information-statt-kommerzielle-in/",
+      "destination": "/blog/prostatakrebs-ohne-werbung-verlassliche-informationen-statt-kommerziel/",
+      "permanent": true
+    }
+  ]
+}
