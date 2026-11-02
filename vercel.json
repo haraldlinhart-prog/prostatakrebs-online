@@ -10,5 +10,6 @@
       "destination": "/blog/prostatakrebs-ohne-werbung-verlassliche-informationen-statt-kommerziel/",
       "permanent": true
     }
-  ]
+  ],
+  "outputDirectory": "."
 }
