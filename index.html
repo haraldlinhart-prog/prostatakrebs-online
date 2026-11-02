@@ -25,6 +25,14 @@
   "inLanguage": "de-DE"
 }
 </script>
+<style>
+  .na-list{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+  .na-item{margin:0}
+  .na-link{display:block;height:100%;box-sizing:border-box;padding:1rem 1.25rem;border:1px solid rgba(127,127,127,.35);border-radius:8px;color:inherit;text-decoration:none;transition:border-color .2s}
+  .na-link:hover,.na-link:focus-visible{border-color:currentColor}
+  .na-date{display:block;font-size:.8rem;opacity:.7;margin-bottom:.35rem}
+  .na-title{display:block;font-weight:600;line-height:1.4}
+</style>
 </head>
 <body>
 
@@ -104,6 +112,22 @@
 
 <div id="health-news-mount"></div>
 <script src="/news-widget.js"></script>
+
+<section class="neueste-artikel" id="neueste-artikel" style="padding:3rem 0;">
+  <div class="wrap">
+    <h2>Neueste Artikel</h2>
+    <!-- latest-articles:start -->
+    <ul class="na-list">
+      <li class="na-item"><a class="na-link" href="/blog/prostatakrebs-heilungschancen-was-die-prognose-wirklich-beeinflusst/"><time class="na-date" datetime="2026-11-02">02.11.2026</time><span class="na-title">Prostatakrebs Heilungschancen: Was die Prognose wirklich beeinflusst</span></a></li>
+      <li class="na-item"><a class="na-link" href="/blog/inkontinenz-nach-prostatakrebs-ursachen-verlauf-und-wirksame-gegenmass/"><time class="na-date" datetime="2026-10-31">31.10.2026</time><span class="na-title">Inkontinenz nach Prostatakrebs: Ursachen, Verlauf und wirksame Gegenmaßnahmen</span></a></li>
+      <li class="na-item"><a class="na-link" href="/blog/prostatakrebs-nebenwirkungen-was-betroffene-erwarten-konnen-und-wie-si/"><time class="na-date" datetime="2026-10-29">29.10.2026</time><span class="na-title">Prostatakrebs Nebenwirkungen: Was Betroffene erwarten können und wie sie damit umgehen</span></a></li>
+      <li class="na-item"><a class="na-link" href="/blog/prostatakrebs-hormontherapie-wirkprinzip-einsatzgebiete-und-was-betrof/"><time class="na-date" datetime="2026-10-27">27.10.2026</time><span class="na-title">Prostatakrebs Hormontherapie: Wirkprinzip, Einsatzgebiete und was Betroffene wissen sollten</span></a></li>
+      <li class="na-item"><a class="na-link" href="/blog/psa-wert-schwankt-stark-ursachen-bewertung-und-praktischer-umgang-mit-/"><time class="na-date" datetime="2026-10-25">25.10.2026</time><span class="na-title">PSA-Wert schwankt stark: Ursachen, Bewertung und praktischer Umgang mit Schwankungen</span></a></li>
+      <li class="na-item"><a class="na-link" href="/blog/prostatakrebs-metastasen-lebenserwartung-realistische-prognosen-und-be/"><time class="na-date" datetime="2026-10-23">23.10.2026</time><span class="na-title">Prostatakrebs Metastasen Lebenserwartung: Realistische Prognosen und beeinflussbare Faktoren</span></a></li>
+    </ul>
+    <!-- latest-articles:end -->
+  </div>
+</section>
 
 <footer>
   <div class="footer-grid">
