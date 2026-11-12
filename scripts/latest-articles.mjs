@@ -31,7 +31,7 @@ function collect() {
     const title = h1.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     if (!title) continue;
     const pub = (html.match(/"datePublished"\s*:\s*"([^"]+)"/) || [])[1] || lastmod;
-    out.push({ href: `/blog/${mm[1]}/`, title, date: pub ? pub.slice(0, 10) : '' });
+    out.push({ href: `/blog/${mm[1]}`, title, date: pub ? pub.slice(0, 10) : '' });
   }
   out.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
   return out.slice(0, LIMIT);

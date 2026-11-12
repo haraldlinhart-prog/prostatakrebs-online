@@ -29,6 +29,16 @@
       "source": "/datenschutz/",
       "destination": "/datenschutz.html",
       "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug/",
+      "destination": "/blog/:slug",
+      "permanent": true
     }
   ],
   "outputDirectory": "."
